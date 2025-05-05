@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlanta, GA | Urban Heat Islands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<!-- Leaflet Side-by-Side plugin -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-side-by-side/leaflet-side-by-side.css" />
+<script src="https://unpkg.com/leaflet-side-by-side/leaflet-side-by-side.js"></script>
+<style>
+  #map {
+    height: 500px;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> 
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar"> 
+            <ul class="navbar-nav"> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="atlanta.html">Atlanta, GA</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" href="washington.html">Washington D.C.</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link" href="boston.html">Boston, MA</a>
+                </li>         
+            </ul>
+        </div>  
+    </nav>
+    <div class="container">
+        <br>
+        <h2>Atlanta Urban Heat Map</h2>
+        
+        <div id="map"></div>
+      </div>
+      <div class="container mt-4">
+        <h3>Atlanta Urban Heat Island Maps: 2016 VS. 2023</h3>
+        <p>
+            This page shows two satellite-derived <strong>land surface temperature</strong> (LST) maps for Atlanta — one from <strong>2016</strong> and another from <strong>2023</strong>. These maps use color gradients to visualize how different areas absorb and retain heat, helping to illustrate the effects of the urban heat island (UHI) phenomenon.
+
+You can click the map layer toggles (top-right corner of the map) to switch between the 2016 and 2023 heat maps. This comparison highlights how heat distribution has changed across the city over time.</p>
+      
+        <p>
+            The maps use a color gradient to visualize heat intensity. Areas with <strong>higher temperatures</strong> (typically paved, built-up zones) are shown in <span style="color:#ca0020; font-weight:bold;">deep red</span>, while <strong>cooler areas</strong> (usually parks, forests, or water bodies) appear in <span style="color:#0571b0; font-weight:bold;">blue</span>.
+          </p>
+        
+          <h5>2016 Land Surface Temperature (Kelvin)</h5>
+          <div class="p-3 border bg-light mb-3">
+            <div><span style="display:inline-block; width:20px; height:20px; background:#ca0020;"></span> 1112.3 K – Very High (Urban Core)</div>
+            <div><span style="display:inline-block; width:20px; height:20px; background:#f4a582;"></span> ~1057.8 K – High</div>
+            <div><span style="display:inline-block; width:20px; height:20px; background:#f7f7f7; border:1px solid #ccc;"></span> ~1051.6 K – Moderate</div>
+            <div><span style="display:inline-block; width:20px; height:20px; background:#92c5de;"></span> ~1047.8 K – Cool</div>
+            <div><span style="display:inline-block; width:20px; height:20px; background:#0571b0;"></span> 1012.2 K – Very Cool (Vegetation or Water)</div>
+          </div>
+
+          <div class="container mt-4">
+            <h5>2023 Land Surface Temperature (Kelvin)</h5>
+          
+            <div class="p-3 border bg-light mb-3">
+              <div><span style="display:inline-block; width:20px; height:20px; background-color:#ca0020; margin-right:8px;"></span>1110.6 K – Very High (Urban Core)</div>
+              <div><span style="display:inline-block; width:20px; height:20px; background-color:#f4a582; margin-right:8px;"></span>1045.6 K – High</div>
+              <div><span style="display:inline-block; width:20px; height:20px; background-color:#f7f7f7; margin-right:8px;"></span>1041.7 K – Moderate</div>
+              <div><span style="display:inline-block; width:20px; height:20px; background-color:#92c5de; margin-right:8px;"></span>10439.3 K – Low</div>
+              <div><span style="display:inline-block; width:20px; height:20px; background-color:#0571b0; margin-right:8px;"></span>998.1 K – Very Low (Water & Vegetation)</div>
+            </div>
+          
+            <p class="text-muted">Kelvin (K) is a standard scientific unit for measuring temperature. The map helps visualize urban heat islands, where built environments retain more heat than natural surfaces.</p>
+          </div>
+       <!--<h5>Color Interpretation:</h5>
+        <ul>
+          <li><span style="color:red; font-weight:bold;">Deeper red</span> areas represent <strong>higher surface temperatures</strong>, often associated with dense urbanization, concrete, asphalt, and sparse vegetation.</li>
+          <li><span style="color:blue; font-weight:bold;">Bluer</span> areas represent <strong>lower surface temperatures</strong>, typically found in regions with abundant vegetation, parks, or water bodies.</li>
+        </ul>
+      
+        <h5>Legend (Approximate):</h5>
+        <div class="p-3 border bg-light mb-3">
+          <div><span style="display:inline-block; width:20px; height:20px; background:#8B0000;"></span> Very Hot (Urban Core) – > 315 K</div>
+          <div><span style="display:inline-block; width:20px; height:20px; background:#FF4500;"></span> Hot – ~305–315 K</div>
+          <div><span style="display:inline-block; width:20px; height:20px; background:#FFD700;"></span> Warm – ~295–305 K</div>
+          <div><span style="display:inline-block; width:20px; height:20px; background:#ADD8E6;"></span> Cool – ~285–295 K</div>
+          <div><span style="display:inline-block; width:20px; height:20px; background:#00008B;"></span> Cold / Water – < 285 K</div>
+        </div>
+    -->
+      </div>
+      
+
+    <div class="container">
+        <h2>City of Atlanta, GA</h2>
+        <img src="https://www.atlantaga.gov/home/showpublishedimage/19557/638237437330330000" class="img-fluid mb-3" alt="Atlanta skyline">
+        <!-- Your interactive map will be embedded here -->
+    </div>
+    <!-- Leaflet Side-by-Side plugin -->
+
+    <!-- Leaflet JS -->
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Initialize the map
+      const map = L.map('map').setView([33.7490, -84.3880], 11);
+    
+      // Define basemaps
+      const OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map © OpenStreetMap contributors',
+        maxZoom: 18
+      });
+    
+      const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a>, OpenMapTiles, OpenStreetMap',
+        ext: 'png'
+      });
+    
+      // Add the default basemap
+      Stadia_AlidadeSmoothDark.addTo(map);
+    
+      // LST Overlays
+      //var imageBounds = [[32.102731219, -85.939803167], [34.232017353, -83.450904701]];
+
+//L.imageOverlay('assets/atlanta/Temp_2016_ATL.png', imageBounds, {
+ // opacity: 0.6
+//}).addTo(map);
+
+     // const imageBounds = [[32.102731219, -85.939803167], [34.232017353, -83.450904701]];
+    //  L.imageOverlay('assets/atlanta/atlanta_2016-rendered.png', imageBounds, {
+  //opacity: 0.7
+//}).addTo(map);
+//var imageBounds2023 = [
+ // [32.100376856, -85.952556543], // SW corner
+ // [34.232132010, -83.463902484]  // NE corner
+//];
+// Image bounds for each overlay
+const bounds2016 = [[32.102731219, -85.939803167], [34.232017353, -83.450904701]];
+  const bounds2023 = [[32.102731219, -85.939803167], [34.232017353, -83.450904701]];//[[32.100376856, -85.952556543], [34.232132010, -83.463902484]];
+
+  // Define overlay layers
+  const overlay2016 = L.imageOverlay('assets/atlanta/atlanta_2016-rendered.png', bounds2016, {
+    opacity: 0.8
+  });
+
+  const overlay2023 = L.imageOverlay('assets/atlanta/atlanta_2023-renderedd.png', bounds2023, {
+    opacity: 0.7
+  });
+
+//L.imageOverlay('assets/atlanta/atlanta_2023-renderedd.png', imageBounds2023, {
+  //opacity: 0.6
+//}).addTo(map);
+
+
+// Layer controls
+const baseMaps = {
+  "OpenStreetMap": OpenStreetMap,
+  "Stadia Dark": Stadia_AlidadeSmoothDark
+};
+
+const overlays = {
+  "2016 LST": overlay2016,
+  "2023 LST": overlay2023
+};
+
+L.control.layers(baseMaps, overlays, {
+  collapsed: false // Keep it expanded
+}).addTo(map);
+
+const sideBySide = L.control.sideBySide(overlay2016, overlay2023).addTo(map);
+
+
+      // const overlay2016 = L.imageOverlay('assets/atlanta/atlanta_2016-rendered.png', imageBounds, {opacity: 0.6}).addTo(map);
+     // const overlay2023 = L.imageOverlay('assets/atlanta/Temp_2023_ATL.tif', imageBounds, {opacity: 0.6});
+    
+    
+      // Load vector boundary
+      fetch('assets/atlanta/atlanta_boundary.geojson')
+        .then(res => res.json())
+        .then(data => {
+          L.geoJSON(data, {
+            style: {
+              color: "red",
+              weight: 2,
+              fill: false
+            }
+          }).addTo(map);
+        });
+    </script>
+
+</body>
+</html>
+
