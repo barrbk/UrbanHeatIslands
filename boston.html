@@ -91,15 +91,14 @@
         maxZoom: 18
       });
     
-      const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
-        minZoom: 0,
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a>, OpenMapTiles, OpenStreetMap',
-        ext: 'png'
-      });
-    
-      // Add the default basemap
-      Stadia_AlidadeSmoothDark.addTo(map);
+    const Carto_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+});
+
+// Add the default basemap
+Carto_Positron.addTo(map);
 
  // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
    // attribution: '© OpenStreetMap contributors'
@@ -125,7 +124,7 @@
   /// Layer controls
 const baseMaps = {
   "OpenStreetMap": OpenStreetMap,
-  "Stadia Dark": Stadia_AlidadeSmoothDark
+  "CartoLightMatter": Carto_Positron
 };
 
 const overlays = {
