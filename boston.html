@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Washington D.C. | Urban Heat Islands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- Leaflet CSS & Side-by-Side Plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-side-by-side/leaflet-side-by-side.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-side-by-side/leaflet-side-by-side.js"></script>
+
+  <style>
+    #map {
+      height: 500px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"> 
+  <a class="navbar-brand" href="index.html">Home</a>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar"> 
+    <ul class="navbar-nav"> 
+      <li class="nav-item"><a class="nav-link" href="atlanta.html">Atlanta, GA</a></li>
+      <li class="nav-item"><a class="nav-link" href="washington.html">Washington D.C.</a></li>
+      <li class="nav-item"><a class="nav-link" href="boston.html">Boston, MA</a></li>         
+    </ul>
+  </div>  
+</nav>
+
+<div class="container">
+    <br>
+  <h2>Boston Urban Heat Map</h2>
+  <div id="map"></div>
+</div>
+
+<div class="container mt-4">
+    <h3>Boston Urban Heat Island Maps: 2015 VS. 2024</h3>
+    <p>
+      This page displays two satellite-derived <strong>land surface temperature</strong> (LST) maps for Boston — one from <strong>2015</strong> and one from <strong>2024</strong>. These maps use color gradients to visualize how various parts of the city absorb and retain heat, offering a clear view of the urban heat island (UHI) effect.
+    </p>
+    <p>
+      You can <strong>click the layer toggles</strong> (located in the top-right corner of the map) to compare the 2015 and 2023 heat maps. This allows you to explore how surface temperatures have shifted over time.
+    </p>
+    <p>
+      The color scale reflects temperature intensity. <span style="color:#ca0020; font-weight:bold;">Deeper reds</span> represent hotter surfaces (usually paved or built-up areas), while <span style="color:#0571b0; font-weight:bold;">cooler blues</span> correspond to lower temperatures often found near vegetation or water bodies.
+    </p>
+  
+    <h5>2015 Land Surface Temperature (Kelvin)</h5>
+    <div class="p-3 border bg-light mb-3">
+      <div><span style="display:inline-block; width:20px; height:20px; background:#ca0020;"></span> 1103.7 K – Very High (Urban Core)</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#f4a582;"></span> 1042.5 K – High</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#f7f7f7;"></span> 1037.3 K – Moderate</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#92c5de;"></span> 1023.3 K – Low</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#0571b0;"></span> 929.4 K – Very Low (Vegetation or Water)</div>
+    </div>
+  
+    <h5>2024 Land Surface Temperature (Kelvin)</h5>
+    <div class="p-3 border bg-light mb-3">
+      <div><span style="display:inline-block; width:20px; height:20px; background:#ca0020;"></span> 1097.3 K – Very High (Urban Core)</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#f4a582;"></span> 1036.4 K – High</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#f7f7f7;"></span> 1031.2 K – Moderate</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#92c5de;"></span> 1023.3 K – Low</div>
+      <div><span style="display:inline-block; width:20px; height:20px; background:#0571b0;"></span> 921.7 K – Very Low (Water & Vegetation)</div>
+    </div>
+  
+    <p class="text-muted">
+      <em>Kelvin (K)</em> is a scientific unit used to measure temperature. These maps are a useful tool for identifying areas where urban development has led to increased heat retention, as well as zones where green or blue spaces help keep surface temperatures lower.
+    </p>
+  </div>
+  
+  <div class="container">
+    <h2>City of Boston, MA</h2>
+    <img src="https://images.unsplash.com/photo-1501979376754-2ff867a4f659?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9zdG9uJTIwY2l0eXxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid mb-3" alt="Boston">
+    <!-- Your interactive map will be embedded here -->
+  </div>
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  //const map = L.map('map').setView([38.89511, -77.03637], 11); // DC Center
+  const map = L.map('map').setView([42.3601, -71.0589], 11);
+
+  // Basemap
+  const OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map © OpenStreetMap contributors',
+        maxZoom: 18
+      });
+    
+      const Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a>, OpenMapTiles, OpenStreetMap',
+        ext: 'png'
+      });
+    
+      // Add the default basemap
+      Stadia_AlidadeSmoothDark.addTo(map);
+
+ // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+   // attribution: '© OpenStreetMap contributors'
+  //}).addTo(map);
+
+  // Bounds for overlays (replace with your actual bounds)
+  const bounds2015 =   [[40.637945333, -72.806758412],
+  [42.857681861, -69.882760036]
+];// [[37.796500423, -78.271630783], // SW corner: lat, lon
+ // [39.990334233, -75.506704416]];  // NE corner: lat, lon
+//[[38.791, -77.150], [39.003, -76.910]]; // SW to NE
+  const bounds2024 =   [[40.637151597, -72.832381348],
+    [42.857474026, -69.907611920]
+  ];
+   //[[37.796500423, -78.271630783], // SW corner: lat, lon
+ // [39.990334233, -75.506704416]  // NE corner: lat, lon
+//];//[[38.791, -77.150], [39.003, -76.910]];
+
+  // Define overlay images
+  const overlay2015 = L.imageOverlay('assets/boston/Temp_2015_BOS.png', bounds2015);
+  const overlay2024 = L.imageOverlay('assets/boston/Temp_2024_BOS.png', bounds2024);
+
+  /// Layer controls
+const baseMaps = {
+  "OpenStreetMap": OpenStreetMap,
+  "Stadia Dark": Stadia_AlidadeSmoothDark
+};
+
+const overlays = {
+  "2015 LST": overlay2015,
+  "2024 LST": overlay2024
+};
+
+L.control.layers(baseMaps, overlays, {
+  collapsed: false // Keep it expanded
+}).addTo(map);
+
+  // Add slider control
+  L.control.sideBySide(overlay2015, overlay2024).addTo(map);
+  L.control.layers(baseMaps, overlays, { collapsed: false }).addTo(map);
+
+  // Load vector boundary (optional)
+  fetch('assets/washington/washington_boundary.geojson')
+    .then(res => res.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: "blue",
+          weight: 2,
+          fill: false
+        }
+      }).addTo(map);
+    });
+</script>
+
+</body>
+</html>
+
